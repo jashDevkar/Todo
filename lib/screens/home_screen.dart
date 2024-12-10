@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/components/task_list.dart';
+import 'package:todo/main.dart';
 import 'package:todo/screens/add_task_screen.dart';
 import 'package:todo/utils/styles.dart';
 
@@ -11,6 +14,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  Box _box = Hive.box('mybox');
+
+
+  @override
+  void initState(){
+    super.initState();
+    if(_box.get('TODOS')== null){
+      Provider.of<TodoData>(context,listen: false).intializeDataBase();
+    }
+    else{
+      print(_box.get('TODOS'));
+
+      print(Provider.of<TodoData>(context,listen: false).getTasks());
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+           Padding(
             padding: EdgeInsets.only(left: 30.0,top: 60,bottom: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(child:Icon(Icons.menu),backgroundColor: Colors.white,),
+                CircleAvatar(child:Icon(Icons.menu),backgroundColor: Colors.white ,),
                 SizedBox(height: 10.0,),
                 Text('Todo',style: kTitleTextStyle,),
-                Text('Tasks',style: kTaskCountStyle,)
+                Text('${Provider.of<TodoData>(context).getCount()} Tasks',style: kTaskCountStyle,)
               ],
             ),
           ),

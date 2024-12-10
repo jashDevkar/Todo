@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kTitleTextStyle = TextStyle(
-  fontSize: 42,
+  fontSize: 44,
   fontWeight: FontWeight.bold,
   color: Colors.white
 );

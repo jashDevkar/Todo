@@ -1,55 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/main.dart';
 import 'package:todo/utils/styles.dart';
 
 class TaskTile extends StatelessWidget {
 
-  late String taskName;
+  late String title;
   Function onCheckChanged;
-  late bool isChecked;
+  bool isChecked;
+  late String priority;
+  late int position;
 
    TaskTile({
-    required this.taskName,
-    required this.isChecked,
-    required this.onCheckChanged
+    required this.position,
+     required this.priority,
+     required this.title,
+     required this.isChecked,
+     required this.onCheckChanged
 });
+
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-        elevation: 2.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)
-        ),
-
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-             Row(
-               children: [
-                 Icon(Icons.star),
-                 SizedBox(width: 10.0,),
-                 Column(
-                   children: [
-                     Text('My title',style:TextStyle(
-                       fontSize: 16,
-                       fontWeight: FontWeight.bold,
-                       decoration:isChecked? TextDecoration.lineThrough: null
-                     ),),
-                     Text('Description')
-                   ],
-                 ),
-               ],
-             ),
-
-              Checkbox(value: isChecked, onChanged: (value){
-                onCheckChanged(value);
-              })
-            ],
+    return GestureDetector(
+      onLongPress: (){
+          Provider.of<TodoData>(context,listen: false).deleteTask(position);
+      },
+      child: Card(
+        color: Colors.white,
+          elevation: 2.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)
           ),
-        ),
+
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+               Row(
+                 children: [
+                   if(priority =='high')
+                     Icon(Icons.star,color: Colors.yellow,),
+                   SizedBox(width: 10.0,),
+                   Column(
+                     children: [
+                       Text('${this.title}',style:TextStyle(
+                         fontSize: 16,
+                         fontWeight: FontWeight.bold,
+                         decoration:isChecked ? TextDecoration.lineThrough: null
+                       ),),
+
+                     ],
+                   ),
+                 ],
+               ),
+
+                Checkbox(value: isChecked, onChanged: (value){
+                  onCheckChanged(value);
+                })
+              ],
+            ),
+          ),
+      ),
     );
   }
 }

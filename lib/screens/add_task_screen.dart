@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo/model/task_model.dart';
-import 'package:todo/utils/database_helper.dart';
+import 'package:todo/main.dart';
 import 'package:todo/utils/styles.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
 class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key});
+
+   const AddTaskScreen({super.key});
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
@@ -13,18 +14,16 @@ class AddTaskScreen extends StatefulWidget {
 class _AddTaskScreenState extends State<AddTaskScreen> {
 
 
-
   @override
   void initState(){
     super.initState();
 
   }
 
-
-
-  TextEditingController myDateController = TextEditingController();
+  TextEditingController endDateController = TextEditingController();
   TextEditingController controller = TextEditingController();
-  int priority = 2;
+
+  String? priority = 'low';
 
 
   @override
@@ -41,15 +40,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       );
 
       if(picker!=null){
-        myDateController.text=picker.toString();
+        endDateController.text=picker.toString();
       }
     }
     void clearTextField(){
       controller.clear();
-      myDateController.clear();
+      endDateController.clear();
     }
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -78,14 +75,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       Text('Priority'),
                       SizedBox(width: 10.0,),
                       DropdownButton(
-                          value: 2,
+                          value: priority,
                           items: [
-                            DropdownMenuItem(child: Text('High'),value: 2,),
-                            DropdownMenuItem(child: Text('Low'),value: 1,),
-                          ], onChanged: (value){
-                        setState(() {
-                          priority = value??2;
-                        });
+                            const DropdownMenuItem(child: Text('High'),value: 'high',),
+                            const DropdownMenuItem(child: Text('Low'),value: 'low',),
+                          ],
+                          onChanged: (value){
+                          setState(() {
+                            priority = value;
+                          });
                       })
                     ]
                 ),
@@ -94,7 +92,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   width: 150,
                   child: TextField(
                     readOnly: true,
-                    controller: myDateController,
+                    controller: endDateController,
                     decoration: InputDecoration(
                         labelText: 'Date',
                         prefixIcon: Icon(Icons.date_range)
@@ -117,7 +115,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ))
                     ),
                     onPressed: (){
-                      // insertDataInDB();
+
+                       Provider.of<TodoData>(context,listen: false).addTask(title: controller.text,priority: priority,endDate: endDateController.text,);
+                     Navigator.pop(context);
                     },
                     child: const Text('submit',style: TextStyle(color: Colors.white),),),
                 ),
