@@ -19,3 +19,12 @@ const kPriorityStyle = TextStyle(
 const kButtonColor= TextStyle(
   color: Colors.white,
 );
+
+const kAddTaskScreenAppBar =TextStyle(
+  color: Colors.white
+);
+
+const kCardTittleStyle = TextStyle(
+
+
+);

@@ -11,28 +11,28 @@ class TodoModel{
 
 
 
-  //Converting to map
-  Map<String,dynamic> toMap(){
-    var map = Map<String,dynamic>();
-    if(id!=null){
-      map['id']=id;
-    }
-    map['title']=title;
-    map['priority']=priority;
-    map['dateEndTime']=dateEndTime;
-    map['isChecked']=isChecked;
+//Converting to map
+// Map<String,dynamic> toMap(){
+//   var map = Map<String,dynamic>();
+//   if(id!=null){
+//     map['id']=id;
+//   }
+//   map['title']=title;
+//   map['priority']=priority;
+//   map['dateEndTime']=dateEndTime;
+//   map['isChecked']=isChecked;
+//
+//   return map;
+// }
 
-    return map;
-  }
-
-  //from map to variable
-  TodoModel.fromMap(Map<String,dynamic> map){
-    this.id = map['id'];
-    this.title = map['title'];
-    this.priority = map['priority'];
-    this.dateEndTime = map['dateEndTime'];
-    this.isChecked = map['isChecked'];
-
-  }
+//from map to variable
+// TodoModel.fromMap(Map<String,dynamic> map){
+//   this.id = map['id'];
+//   this.title = map['title'];
+//   this.priority = map['priority'];
+//   this.dateEndTime = map['dateEndTime'];
+//   this.isChecked = map['isChecked'];
+//
+// }
 
 }

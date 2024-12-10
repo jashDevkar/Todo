@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/components/task_list.dart';
+import 'package:todo/screens/add_task_screen.dart';
 import 'package:todo/utils/styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,7 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTaskScreen()));
+        },
         child: Icon(Icons.add,color: Colors.white,),
         backgroundColor: Colors.blue,
         shape: RoundedRectangleBorder(
