@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 const kTitleTextStyle = TextStyle(
-  fontSize: 44,
+  fontSize: 48,
   fontWeight: FontWeight.bold,
   color: Colors.white
 );
 
 const kTaskCountStyle = TextStyle(
   fontWeight: FontWeight.bold,
-  fontSize: 16,
+  fontSize: 20,
   color: Colors.white
 );
 
@@ -24,7 +24,6 @@ const kAddTaskScreenAppBar =TextStyle(
   color: Colors.white
 );
 
-const kCardTittleStyle = TextStyle(
-
-
+const kFilterTextStyle=TextStyle(
+  fontSize: 32
 );

@@ -2,25 +2,27 @@
 class TodoModel {
   late int? id;
   late String? title;
-  late String? priority;
-  late String? dateEndTime;
+  late String priority='low';
+  late String dateEndTime;
   late bool isChecked = false;
 
   //Constructor to call
   TodoModel(
-      {required this.title, this.priority, required this.dateEndTime, required this.isChecked });
+      {required this.title, required this.priority, required this.dateEndTime, required this.isChecked });
 
 
+  //converting objects to map
   Map<String, dynamic> toJson() {
     return {
       'title': title,
-      'dateEndTime': dateEndTime, // Convert DateTime to String
+      'dateEndTime': dateEndTime,
       'isChecked': isChecked,
       'priority': priority,
     };
   }
 
 
+  //converting Map to objects
   factory TodoModel.fromJson( var item) {
     return TodoModel(
       title: item['title'],
@@ -33,27 +35,7 @@ class TodoModel {
 
 
 
-//Converting to map
-// Map<String,dynamic> toMap(){
-//   var map = Map<String,dynamic>();
-//   if(id!=null){
-//     map['id']=id;
-//   }
-//   map['title']=title;
-//   map['priority']=priority;
-//   map['dateEndTime']=dateEndTime;
-//   map['isChecked']=isChecked;
-//
-//   return map;
-// }
 
-//from map to variable
-// TodoModel.fromMap(Map<String,dynamic> map){
-//   this.id = map['id'];
-//   this.title = map['title'];
-//   this.priority = map['priority'];
-//   this.dateEndTime = map['dateEndTime'];
-//   this.isChecked = map['isChecked'];
-//
-// }
+
+
 
