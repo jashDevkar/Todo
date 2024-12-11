@@ -17,5 +17,16 @@ samples, guidance on mobile development, and a full API reference.
 
 # Starting
 
-click on the floating button to add list
+=>click on the floating button to add list
+=>Add title of you task along with priority and Due date
+=>Click on submit and app will redirect to homescreen with new task added on home screen
+
+Note:- at begining dummy data will be added to the task list
+
+=>One can add number of tasks in the app
+=>on top left corner of app Bar is a menu icon
+=>onclicking menu icon one can see a app drawer
+=>All filtering options are there in the drawer
+=>Task edit option is not built though its logic and implementation is ready
+
 
