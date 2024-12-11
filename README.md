@@ -27,11 +27,16 @@ Note:- at begining dummy data will be added to the task list
 
 One can add number of tasks in the app
 
+To delete a task , Long press on the card
+
 on top left corner of app Bar is a menu icon
 
 onclicking menu icon one can see a app drawer
 
 All filtering options are there in the drawer
+
 Task edit option is not built though its logic and implementation is ready
+
+
 
 
