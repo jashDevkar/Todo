@@ -1,6 +1,5 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/model/task_model.dart';
@@ -53,6 +52,7 @@ class TodoData extends ChangeNotifier {
     List<Map<String, dynamic>> todoListsMap =
         todoLists.map((todo) => todo.toJson()).toList();
     _box.put('TODOS', todoListsMap);
+    _safeList = [...todoLists];
     notifyListeners();
   }
 
@@ -75,7 +75,7 @@ class TodoData extends ChangeNotifier {
     _box.put('TODOS', todoListsMap);
   }
 
-  //this will display all tasks
+  //this will display all tasks at begining of the code
   void getAllTasks() {
     var myitems = _box.get('TODOS');
     todoLists=[];
@@ -84,6 +84,12 @@ class TodoData extends ChangeNotifier {
       todoLists.add(todo);
     }
     _safeList=todoLists;
+    notifyListeners();
+  }
+
+  //this will get all task for filters
+  void getAllData(){
+    todoLists = [..._safeList];
     notifyListeners();
   }
 

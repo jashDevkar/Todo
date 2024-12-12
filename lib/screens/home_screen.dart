@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                  value: 'All tasks',
                  groupValue: selectedValue,
                  onChanged: (value){
-                   Provider.of<TodoData>(context,listen: false).getAllTasks();
+                   Provider.of<TodoData>(context,listen: false).getAllData();
                    setState(() {
                      selectedValue=value;
                    });
@@ -77,9 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   value: 'Completed Task',
                   groupValue: selectedValue,
                   onChanged: (value){
+                    Provider.of<TodoData>(context,listen: false).getCompletedTask();
                     setState(() {
                       selectedValue=value;
-                      Provider.of<TodoData>(context,listen: false).getCompletedTask();
                     });
                   },
                 ),
@@ -92,9 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   value: 'High Priority',
                   groupValue: selectedValue,
                   onChanged: (value){
+                    Provider.of<TodoData>(context,listen: false).getHighPriorityTasks();
                     setState(() {
                       selectedValue=value;
-                      Provider.of<TodoData>(context,listen: false).getHighPriorityTasks();
                     });
                   },
                 ),
